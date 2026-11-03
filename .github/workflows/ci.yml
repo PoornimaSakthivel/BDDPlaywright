@@ -29,5 +29,10 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      - name: Create QA env file
+        run: echo "${{ secrets.ENV_QA }}" > config/.env.qa
+
       - name: Run BDD tests
         run: npx cucumber-js
+        env:
+          ENV: qa
